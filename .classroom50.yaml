@@ -1,0 +1,12 @@
+schema: "classroom50/repo-config/v1"
+classroom: "l5-adv-2026-jul"
+assignment: "l5-adv-mission-5-phase-2"
+owner:
+  username: "munishk686"
+  id: 103566689
+  accepted_at: "2026-09-13T23:07:02Z"
+source:
+  owner: "Mission-Ready"
+  owner_id: 91437324
+  repo: "l5-adv-mission-5-phase2"
+  branch: "main"
