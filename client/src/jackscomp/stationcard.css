@@ -1,0 +1,20 @@
+.station-card {
+  background: white;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.station-card h2 {
+  color: #1f196e;
+  margin-bottom: 8px;
+}
+
+.station-card p {
+  margin: 6px 0;
+  color: #333;
+}
+
+.station-card:hover {
+  background: #f7f7f7;
+}
