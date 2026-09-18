@@ -2,5 +2,19 @@
     position: absolute;
      z-index: 998;
      margin-left: 80vw;
-     margin-top: 88vh;
+     margin-top: 68vh;
+}
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+.mapContainer {
+    height: 80vh;
+    width: 100vw;
+}
+@media (min-width: 768px) {
+  .mapContainer {
+    height: 85vh;
+    width: 50vw;
+  }
 }

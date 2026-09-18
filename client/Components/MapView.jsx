@@ -20,6 +20,24 @@ function LocateButton() {
     <img className="posbutton" src={pos} alt="locate me" onClick={handleClick} />
   );
 }
+// function MapZoom() {
+//   const map = useMap();
+
+//   function handleZoomIn() {
+//  map.zoomIn()
+//   }
+//   function handleZoomOut() {
+//     map.zoomOut()
+//   }
+
+//   return (
+//   <div className="zoomWrapper">
+//     <button className="zoomInBtn" onClick={handleZoomIn}>+</button>
+//     <button className="zoomOutBtn" onClick={handleZoomOut}>−</button>
+//   </div>
+//   );
+// }
+
 
 function MapView() {
   const position = [-36.8485, 174.7633];
@@ -53,12 +71,12 @@ function MapView() {
 
     return (
       <>
+      <div className="mapContainer">
         <MapContainer
           center={userLocation || position}
           zoom={zoom}
           zoomControl={false}
           scrollWheelZoom={scrollWheelZoom}
-          style={{ height: "100vh", width: "100vw" }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -78,6 +96,7 @@ function MapView() {
               }}
             ></Marker>
           ))}
+          {/* <MapZoom/> */}
           <LocateButton/>
         </MapContainer>
         {clickedStations && (
@@ -86,6 +105,7 @@ function MapView() {
             onClose={() => setClickedStations("")}
           />
         )}
+        </div>
       </>
     );
   
