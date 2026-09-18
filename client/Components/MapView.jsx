@@ -3,12 +3,15 @@ import { divIcon } from "leaflet";
 import { MapIcon } from "./MapIcon";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useState, useEffect } from "react";
+import StationPopup from "./StationPopup";
 
 function MapView() {
   const position = [-41.2865, 174.7762];
   const zoom = 10;
   const scrollWheelZoom = true;
   const [stations, setStations] = useState([]);
+  const [clickedStations, setClickedStations] = useState('')
+
 
   useEffect(() => {
     fetch("http://localhost:5000/api/stations")
@@ -21,9 +24,11 @@ function MapView() {
       });
   }, []);
   return (
+    <>
     <MapContainer
       center={position}
       zoom={zoom}
+      zoomControl={false}
       scrollWheelZoom={scrollWheelZoom}
       style={{ height: "100vh", width: "100vw" }}
     >
@@ -36,11 +41,19 @@ function MapView() {
           key={station._id}
           position={[station.latitude, station.longitude]}
           // this is hardcodded for now it is takeing from only the ZX_Premium Price and not the other 2 why did i choose that one... IDK just happend.
-          icon={MapIcon(station.prices.ZX_Premium)}
+          icon={MapIcon(station.prices.Z91_Unleaded)}
+          eventHandlers={{
+            click: () => {
+              console.log(clickedStations);
+                setClickedStations((station))
+            }
+          }}
         >
         </Marker>
       ))}
     </MapContainer>
+    {clickedStations && <StationPopup station={clickedStations} onClose={() => setClickedStations('')} />}
+    </>
   );
 }
 
