@@ -1,3 +1,6 @@
+.zoomWrapper {
+  position: relative;
+}
 .posbutton {
     position: absolute;
      z-index: 998;
@@ -17,4 +20,32 @@
     height: 85vh;
     width: 50vw;
   }
+} 
+.zoomInBtn {
+  position: absolute;
+  background: #F26522;
+  color: white;
+  height: 28px;
+  border-top-right-radius: 40%;
+  border-top-left-radius: 40%;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  margin-left: 45vw;
+  margin-top: 74vh;
+  z-index: 1001;
+}
+.zoomOutBtn {
+  position: absolute;
+  background: #F26522;
+  color: white;
+  height: 28px;
+  border-bottom-right-radius: 40%;
+  border-bottom-left-radius: 40%;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  margin-left: 45vw;
+  margin-top: 78vh;
+  z-index: 1001;
 }

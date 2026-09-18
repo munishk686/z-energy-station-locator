@@ -1,4 +1,3 @@
-//import { useState } from 'react'
 import FindStation from './findstation/findstation.jsx'
 import './App.css'
 import MapView from '../Components/MapView';
@@ -9,8 +8,9 @@ function App() {
   return (
     <>
       <FindStation />
-          <div id="map">
-      <MapView />
+          <div className='map' id="map">
+            <div className='map50'><MapView/></div>
+      <div className='map50'><MapView/></div>
     </div>
     </>
   );

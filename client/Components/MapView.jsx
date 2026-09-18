@@ -20,23 +20,23 @@ function LocateButton() {
     <img className="posbutton" src={pos} alt="locate me" onClick={handleClick} />
   );
 }
-// function MapZoom() {
-//   const map = useMap();
+function MapZoom() {
+  const map = useMap();
 
-//   function handleZoomIn() {
-//  map.zoomIn()
-//   }
-//   function handleZoomOut() {
-//     map.zoomOut()
-//   }
+  function handleZoomIn() {
+ map.zoomIn()
+  }
+  function handleZoomOut() {
+    map.zoomOut()
+  }
 
-//   return (
-//   <div className="zoomWrapper">
-//     <button className="zoomInBtn" onClick={handleZoomIn}>+</button>
-//     <button className="zoomOutBtn" onClick={handleZoomOut}>−</button>
-//   </div>
-//   );
-// }
+  return (
+  <div className="zoomWrapper">
+    <div className="zoomInBtn" onClick={handleZoomIn}><h2>+</h2></div>
+    <div className="zoomOutBtn" onClick={handleZoomOut}><h2>-</h2></div>
+  </div>
+  );
+}
 
 
 function MapView() {
@@ -71,7 +71,7 @@ function MapView() {
 
     return (
       <>
-      <div className="mapContainer">
+        <div className="mapContainer">
         <MapContainer
           center={userLocation || position}
           zoom={zoom}
@@ -96,7 +96,7 @@ function MapView() {
               }}
             ></Marker>
           ))}
-          {/* <MapZoom/> */}
+          <MapZoom/>
           <LocateButton/>
         </MapContainer>
         {clickedStations && (
