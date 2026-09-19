@@ -1,0 +1,123 @@
+.more-filters-panel {
+  width: 390px;
+  background: #ffffff;
+  padding: 28px 22px 24px;
+  border-radius: 0 0 40px 40px;
+  color: #1f196e;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 100;
+}
+
+.filter-section {
+  padding: 18px 6px;
+  border-bottom: 1px solid #f26522;
+}
+
+.filter-section h3 {
+  margin: 0 0 18px;
+  color: #f25622;
+  font-size: 16px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-chips button {
+  background: white;
+  color: #1f196e;
+  border-radius: 25px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 5px #bbbbbb;
+  cursor: pointer;
+}
+
+.filter-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.save-filter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.refine-options {
+  display: flex;
+  gap: 15px;
+}
+
+.refine-options select {
+  padding: 10px 14px;
+  border: 1px solid #eeeeee;
+  border-radius: 25px;
+  background: white;
+  color: #1f196e;
+}
+
+.distance-slider {
+  width: 100%;
+  accent-color: #f26522;
+}
+
+.distance-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: #1f196e;
+  font-size: 10px;
+}
+
+.other-services {
+  border-bottom: none;
+}
+
+.payment-select {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  background: #fafafa;
+  color: #1f196e;
+  font-size: 14px;
+}
+
+
+.filter-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 10px 6px 0;
+}
+
+.clear-button,
+.apply-button {
+  flex: 1;
+  padding: 14px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.clear-button {
+  background: white;
+  color: #f26522;
+  border: 1px solid #eeeeee;
+}
+
+.apply-button {
+  background: #f26522;
+  color: white;
+  border: none;
+}
+
+.filter-chips button.selected {
+  background: #3028ac;
+  color: white;
+}
