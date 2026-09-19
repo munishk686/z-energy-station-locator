@@ -36,9 +36,10 @@ function SearchBanner({ onResults, onApplyFilters }) {
          value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="search-button"
-        onClick={handleSearch}>
-
+        <button className="station-search-button"
+        onClick={handleSearch}
+        aria-label="Search Stations">
+        →
         </button>
       </div>
 

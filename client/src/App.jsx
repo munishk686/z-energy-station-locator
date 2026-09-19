@@ -2,7 +2,7 @@
 import {BrowserRouter, Routes, Route } from "react-router-dom";
 import FindStation from './findstation/findstation.jsx'
 import './App.css'
-import MapView from '../Components/MapView';
+//import MapView from '../Components/MapView';
 import Home from "./pages/Home/Home";
 
 function App() {
@@ -15,14 +15,10 @@ function App() {
     <Route path="/locations" element={
       <>
       <FindStation />
-      <div id="map">
-        <MapView />
-      </div>
       </>
     } />
     </Routes>
     </BrowserRouter>
   );
-
 }
 export default App;

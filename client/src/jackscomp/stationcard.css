@@ -1,22 +1,49 @@
 .station-card {
-  background: white;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
+  background: #ffffff;
+  padding: 24px 32px;
+  border-bottom: 1px solid #dddddd;
   cursor: pointer;
+}
+
+.station-card.collapsed,
+.station-card.expanded {
+  background: #ffffff;
 }
 
 .station-card h2 {
   color: #1f196e;
-  margin-bottom: 8px;
+  font-size: 24px;
+  margin: 0 0 8px;
 }
 
 .station-card p {
   margin: 6px 0;
-  color: #333;
+  color: #1f196e;
 }
 
-.station-card:hover {
-  background: #f7f7f7;
+.station-card .station-distance {
+  color: #e96520;
+}
+
+.station-expanded {
+  margin-top: 20px;
+}
+
+.station-expanded h3 {
+  color: #1f196e;
+  font-size: 18px;
+  margin: 24px 0 10px;
+}
+
+.station-card .station-services {
+  color: #1f196e;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.station-card .service-highlight {
+  color: #e96520;
+  font-weight: bold;
 }
 
 .direction-button {
@@ -24,12 +51,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-
   background-color: #e96520;
   color: white;
   padding: 8px 10px 8px 26px;
   border-radius: 50px;
-
   font-size: 18px;
   font-weight: bold;
   text-decoration: none;
@@ -39,11 +64,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 42px;
   height: 42px;
   border-radius: 50%;
-
   background-color: white;
   color: #e96520;
   font-size: 28px;
@@ -53,7 +76,18 @@
   background-color: #cf5012;
 }
 
-.service-highlight {
+.station-card h2,
+.station-card .station-address,
+.station-expanded h3 {
+  color: #1f196e;
+}
+
+.station-card .station-services span {
+  color: #666666;
+  font-weight: normal;
+}
+
+.station-card .station-services span.service-highlight {
   color: #e96520;
   font-weight: bold;
 }
