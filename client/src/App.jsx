@@ -1,3 +1,4 @@
+
 //import { useState } from 'react'
 import {BrowserRouter, Routes, Route } from "react-router-dom";
 import FindStation from './findstation/findstation.jsx'
@@ -15,10 +16,12 @@ function App() {
     <Route path="/locations" element={
       <>
       <FindStation />
+
       </>
     } />
     </Routes>
     </BrowserRouter>
   );
+
 }
 export default App;
