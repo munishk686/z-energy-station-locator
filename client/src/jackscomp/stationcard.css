@@ -18,3 +18,42 @@
 .station-card:hover {
   background: #f7f7f7;
 }
+
+.direction-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  background-color: #e96520;
+  color: white;
+  padding: 8px 10px 8px 26px;
+  border-radius: 50px;
+
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.direction-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  background-color: white;
+  color: #e96520;
+  font-size: 28px;
+}
+
+.direction-button:hover {
+  background-color: #cf5012;
+}
+
+.service-highlight {
+  color: #e96520;
+  font-weight: bold;
+}

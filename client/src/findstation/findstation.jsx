@@ -4,18 +4,23 @@ import { useState } from "react";
 
 function FindStation() {
  const [results, setResults] = useState([]);
+ const [selectedFilters, setSelectedFilters] = useState([]);
 
   return (
     <>
-      <SearchBanner onResults={setResults} />
+      <SearchBanner onResults={setResults} 
+      onApplyFilters={setSelectedFilters}
+      />
 
       <div className="station-results">
         <p>{results.length} Stations Found</p>
 
         {results.map((station) =>
         <StationCard
-        key={station.id}
-        station={station} />
+        key={station._id}
+        station={station} 
+        selectedFilters={selectedFilters}
+        />
         )}
       </div>
     </>

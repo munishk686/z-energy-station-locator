@@ -13,15 +13,31 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/stations", async (req, res) => {
-  const client = new mongodb.MongoClient("mongodb://localhost:27017");
+ const client = new mongodb.MongoClient("mongodb://localhost:27017");
+
+ try {
   await client.connect();
   const myDB = client.db("Stations");
   const myColl = myDB.collection("zStations");
-  const stations = await myColl.find().toArray();
+  const search = req.query.search || "";
+  const stations = await myColl.find ({
+    $or: [
+      { name: { $regex: search, $options: "i"} },
+      { address: { $regex: search, $options: "i" } }
+    ]
+  }) .toArray();
   res.json(stations);
+} catch (error) {
+  console.error(error);
+  res.status(500).json({ error: "failed to fetch stations" });
+} finally {
   await client.close();
+}
 });
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
+
