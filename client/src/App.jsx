@@ -4,7 +4,7 @@ import MapView from '../Components/MapView';
 
 function App() {
   
-
+// i did 2 maps so i could see on the desktop how its ment to look.
   return (
     <>
       <FindStation />
