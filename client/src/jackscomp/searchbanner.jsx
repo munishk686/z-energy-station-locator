@@ -3,7 +3,7 @@ import { useState } from "react";
 //import stations from "../dummydata/station.js"; (testing search filter ONLY)
 import MoreFilters from "./morefilters.jsx";
 
-function SearchBanner({ onResults, onApplyFilters, userLocation }) {
+function SearchBanner({onResults, onApplyFilters, userLocation, showMobileSearch,}) {
   
   const [search, setSearch] = useState("");
   const [showFilters, setShowFilters] = useState(false);
@@ -41,7 +41,24 @@ function SearchBanner({ onResults, onApplyFilters, userLocation }) {
 
       <h1>Find a Station</h1>
 
-      <div className="search-row">
+      <div className="mobile-filter-bar">
+      <button
+        type="button"
+        className="mobile-back-button"
+        onClick={() => window.history.back()}
+        aria-label="Go back">
+     ‹
+    </button>
+
+    <button
+      type="button"
+      className="mobile-more-filters"
+      onClick={() => setShowFilters(!showFilters)}>
+    ☷ Filters
+  </button>
+</div>
+
+<div className={`search-row ${showMobileSearch ? "mobile-search-open" : ""}`}>
         <input
          type="text"
          placeholder="Search for a station"
@@ -79,8 +96,13 @@ function SearchBanner({ onResults, onApplyFilters, userLocation }) {
     type="button"
     className="more-filters"
     onClick={() => setShowFilters(!showFilters)}>
-    More Filters
   </button>
+  <button
+   type="button"
+   className="desktop-more-filters"
+   onClick={() => setShowFilters(!showFilters)}>
+   More Filters
+</button>
 </div>
 
 {showFilters && <MoreFilters onApplyFilters={onApplyFilters}/>}

@@ -63,7 +63,7 @@ function StationCard({ station, selectedFilters = [] }) {
              (service === "Coffee & Food" ||
              service === "Z Express Coffee & Fresh Food")) ||
              (selectedFilters.includes("Restrooms") &&
-             service === "Restroom");
+             service === "Restroom") ||
              (selectedFilters.includes("EV Station") &&
              service === "EV Charging");
 
