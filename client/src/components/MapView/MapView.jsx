@@ -10,6 +10,8 @@ import listShow from "../../assets/veiwlist.png";
 import zBlue from "../../assets/zBlue.png";
 import goto from "../../assets/goto.png";
 import mapsym from "../../assets/mapicon.png";
+import searchie from "../../assets/search.png"
+import phSearch from "../../assets/placeholderSearch.png"
 import "./MapView.css";
 
 // Haversine formula to culculate the km
@@ -76,6 +78,7 @@ function ListsShow({ stations, userLocation }) {
                   icon={MapIcon(station.prices.Z91_Unleaded)}
                 />
               ))}
+              <Search/>
               <LocateButton />
             </MapContainer>
                         <img
@@ -99,11 +102,13 @@ function ListsShow({ stations, userLocation }) {
                 <h5>
                   {getKm(userLocation, [s.latitude, s.longitude]).toFixed(1)}km
                 </h5>
+                <div className="flex3">
                 <a
                   href={`https://www.google.com/maps?q=${s.latitude},${s.longitude}`}
                 >
                   <img src={goto} alt="google direction" />
                 </a>
+              </div>
               </div>
             ))}
           </div>
@@ -112,6 +117,36 @@ function ListsShow({ stations, userLocation }) {
     </>
   );
 }
+
+function Search() {
+  const [search1 , setSearch1] = useState(false)
+
+  function searchieBtn() {
+    setSearch1(true)
+  }
+  function searchieCloseBtn() {
+    setSearch1(false)
+    setSList(false)
+  }
+
+return (
+  <>
+  <img className="searchie" src={searchie} alt="search icon" onClick={() => {
+    searchieBtn();
+    setSList(false);
+}}/>
+
+  {search1 && (
+    <div className="searchiePop">
+      <div>
+        <img src={phSearch} alt="place holder image" onClick={searchieCloseBtn}/>
+      </div>
+      <div className="sBackground">
+      </div>
+    </div>
+  )}
+  </>
+)}
 
 // desktop under
 
@@ -172,7 +207,7 @@ function MapView() {
   const scrollWheelZoom = true;
   const [stations, setStations] = useState([]);
   const [clickedStations, setClickedStations] = useState("");
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/stations")
@@ -219,7 +254,7 @@ function MapView() {
             </div>
           ))}
         </div>
-
+          {userLocation && 
         <div className="mapContainer">
           <MapContainer
             center={userLocation || position}
@@ -248,6 +283,7 @@ function MapView() {
             <MapZoom />
             <LocateButton />
           </MapContainer>
+          <Search/>
           <ListsShow stations={stations} userLocation={userLocation} />
           <Expand />
           {clickedStations && (
@@ -257,6 +293,7 @@ function MapView() {
             />
           )}
         </div>
+}
       </div>
     </>
   );

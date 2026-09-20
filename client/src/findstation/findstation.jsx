@@ -16,13 +16,13 @@ return (
     <Header />
 
     <main>
-      <SearchBanner
+      {/* <SearchBanner
         onResults={(stations) => {
           setResults(stations);
           setHasSearched(true);
         }}
         onApplyFilters={setSelectedFilters}
-      />
+      /> */}
 
       {hasSearched && (
         <div className="station-layout">
