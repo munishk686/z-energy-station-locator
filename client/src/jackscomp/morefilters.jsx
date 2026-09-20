@@ -2,7 +2,7 @@ import "./morefilters.css";
 import { useState } from "react";
 
 
-function MoreFilters() {
+function MoreFilters( {onApplyFilters} ) {
 
   const [ selectedChips, setSelectedChips ] = useState([]);
   const [ fuelType, setFuelType ] = useState("Z91 Unleaded");
@@ -148,7 +148,8 @@ function MoreFilters() {
 
         <button
           type="button"
-          className="apply-button">
+          className="apply-button"
+          onClick={() => onApplyFilters(selectedChips)}>
           Apply
         </button>
       </div>

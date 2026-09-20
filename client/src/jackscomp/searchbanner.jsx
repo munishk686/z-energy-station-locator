@@ -1,19 +1,27 @@
 import "./searchbanner.css";
 import { useState } from "react";
-import stations from "../dummydata/station.js";
+//import stations from "../dummydata/station.js"; (testing search filter ONLY)
 import MoreFilters from "./morefilters.jsx";
 
-function SearchBanner({ onResults }) {
+function SearchBanner({ onResults, onApplyFilters }) {
   
   const [search, setSearch] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
-  const handleSearch = () => {
-    const filteredStations = stations.filter((station) =>
-      station.name.toLowerCase().includes(search.toLowerCase())
-    );
-    onResults(filteredStations);  
-  }
+  const handleSearch = async () => {
+    try {
+      const response = await fetch (
+        `http://localhost:5000/api/stations?search=${encodeURIComponent(search)}`
+      );
+      if (!response.ok) {
+        throw new Error("failed to fetch stations");
+      }
+      const stations = await response.json();
+      onResults(stations);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div>
@@ -28,9 +36,10 @@ function SearchBanner({ onResults }) {
          value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="search-button"
-        onClick={handleSearch}>
-
+        <button className="station-search-button"
+        onClick={handleSearch}
+        aria-label="Search Stations">
+        →
         </button>
       </div>
 
@@ -50,7 +59,8 @@ function SearchBanner({ onResults }) {
         </button>
       </div>
 
-      {showFilters && <MoreFilters />}
+      {showFilters && <MoreFilters 
+                       onApplyFilters={onApplyFilters}/>}
 </section>
 </div>
    

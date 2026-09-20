@@ -1,0 +1,99 @@
+.make-most-of-z {
+  padding: 70px 8%;
+  background: white;
+}
+
+.make-most-of-z > h2 {
+  margin: 0 0 60px;
+  text-align: center;
+  color: #f26522;
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+.make-most-of-z-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.make-most-of-z-card {
+  max-width: 270px;
+}
+
+.make-most-of-z-category {
+  margin: 0 0 8px;
+  color: #555;
+  font-size: 14px;
+}
+
+.make-most-of-z-card h3 {
+  margin: 0 0 16px;
+  color: #211d70;
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.make-most-of-z-description {
+  margin: 0 0 16px;
+  color: #444;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.make-most-of-z-card button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #211d70;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .make-most-of-z {
+    padding: 48px 40px;
+  }
+
+  .make-most-of-z > h2 {
+    margin-bottom: 55px;
+    text-align: left;
+    font-size: 32px;
+  }
+
+  .make-most-of-z-list {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .make-most-of-z-card {
+    max-width: 100%;
+  }
+
+  .make-most-of-z-category {
+    font-size: 14px;
+  }
+
+  .make-most-of-z-card h3 {
+    font-size: 25px;
+  }
+
+  .make-most-of-z-description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .make-most-of-z-card button {
+    width: 34px;
+    height: 34px;
+  }
+}
