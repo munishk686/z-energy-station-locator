@@ -3,13 +3,13 @@ import { MapIcon } from "./MapIcon";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import { useState, useEffect } from "react";
 import StationPopup from "./StationPopup";
-import pos from "../Assets/pos.png";
-import X from "../Assets/X.png";
-import Xpand1 from "../Assets/Xpand.png";
-import listShow from "../Assets/veiwlist.png";
-import zBlue from "../Assets/zBlue.png";
-import goto from "../Assets/goto.png";
-import mapsym from "../Assets/mapicon.png";
+import pos from "../../assets/pos.png";
+import X from "../../assets/X.png";
+import Xpand1 from "../../assets/Xpand.png";
+import listShow from "../../assets/veiwlist.png";
+import zBlue from "../../assets/zBlue.png";
+import goto from "../../assets/goto.png";
+import mapsym from "../../assets/mapicon.png";
 import "./MapView.css";
 
 // Haversine formula to culculate the km

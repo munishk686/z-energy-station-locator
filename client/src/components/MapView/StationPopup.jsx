@@ -1,7 +1,7 @@
 import './StationPopup.css';
-import directionIcon from '../Assets/direction.png';
-import cssIcon from '../Assets/CCS.png'
-import chadeIcon from '../Assets/CHAdeMO.png'
+import directionIcon from '../../assets/direction.png';
+import cssIcon from '../../assets/CCS.png'
+import chadeIcon from '../../assets/CHAdeMO.png'
 
 function StationPopup({ station, onClose }) {
   return (
