@@ -1,6 +1,6 @@
 import SearchBanner from "../jackscomp/searchbanner.jsx";
 import StationCard from "../jackscomp/stationcard.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MapView from "../../Components/MapView";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -10,6 +10,27 @@ function FindStation() {
  const [results, setResults] = useState([]);
  const [selectedFilters, setSelectedFilters] = useState([]);
  const [hasSearched, setHasSearched] = useState(false);
+ const [userLocation, setUserLocation] = useState(null);
+ const [locationError, setLocationError] = useState("");
+
+useEffect(() => {
+  if (!navigator.geolocation) return;
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      setUserLocation({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      });
+      setLocationError("");
+    },
+    () => {
+      setLocationError(
+        "Location access unavailable. You can still search manually."
+      );
+    }
+  );
+}, []);
 
 return (
   <>
@@ -17,12 +38,17 @@ return (
 
     <main>
       <SearchBanner
+       userLocation={userLocation}
         onResults={(stations) => {
           setResults(stations);
           setHasSearched(true);
         }}
         onApplyFilters={setSelectedFilters}
       />
+
+      {locationError && (
+      <p className="location-error">{locationError}</p>
+      )}
 
       {hasSearched && (
         <div className="station-layout">

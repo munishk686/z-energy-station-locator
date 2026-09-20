@@ -3,10 +3,13 @@ import { useState } from "react";
 //import stations from "../dummydata/station.js"; (testing search filter ONLY)
 import MoreFilters from "./morefilters.jsx";
 
-function SearchBanner({ onResults, onApplyFilters }) {
+function SearchBanner({ onResults, onApplyFilters, userLocation }) {
   
   const [search, setSearch] = useState("");
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedButtons, setSelectedButtons] = useState([]);
+
+  console.log("user location:", userLocation);
 
   const handleSearch = async () => {
     try {
@@ -22,6 +25,15 @@ function SearchBanner({ onResults, onApplyFilters }) {
       console.error(error);
     }
   };
+
+  const handleFilterClick = (filter) => {
+  const updatedFilters = selectedButtons.includes(filter)
+    ? selectedButtons.filter((item) => item !== filter)
+    : [...selectedButtons, filter];
+
+  setSelectedButtons(updatedFilters);
+  onApplyFilters(updatedFilters);
+};
 
   return (
     <div>
@@ -44,23 +56,34 @@ function SearchBanner({ onResults, onApplyFilters }) {
       </div>
 
       <div className="filter-buttons">
-        <button>Lowest Price</button>
-        <button>Nearest</button>
-        <button>24 Hours</button>
-        <button>Car Wash</button>
-        <button>Trailer Hire</button>
-        <button>Coffee</button>
-        <button>Food</button>
-        <button>EV Station</button>
+       {[
+       "Lowest Price",
+       "Nearest",
+       "24 Hours",
+       "Car Wash",
+       "Trailer Hire",
+       "Coffee",
+       "Food",
+       "EV Station",
+      ].map((filter) => (
+    <button
+      key={filter}
+      type="button"
+      className={selectedButtons.includes(filter) ? "selected" : ""}
+      aria-pressed={selectedButtons.includes(filter)}
+      onClick={() => handleFilterClick(filter)}>
+      {filter}
+    </button>
+  ))}
+  <button
+    type="button"
+    className="more-filters"
+    onClick={() => setShowFilters(!showFilters)}>
+    More Filters
+  </button>
+</div>
 
-        <button className="more-filters" 
-                onClick={() => setShowFilters(!showFilters)}>
-          More Filters
-        </button>
-      </div>
-
-      {showFilters && <MoreFilters 
-                       onApplyFilters={onApplyFilters}/>}
+{showFilters && <MoreFilters onApplyFilters={onApplyFilters}/>}
 </section>
 </div>
    
