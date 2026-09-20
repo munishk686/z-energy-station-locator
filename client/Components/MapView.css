@@ -12,6 +12,7 @@
   width: 100%;
 }
 .mapContainer {
+  position: relative;
     height: 80vh;
     width: 100vw;
 }
@@ -21,6 +22,38 @@
     width: 50vw;
   }
 } 
+@media (max-width: 768px) {
+.zoomWrapper, .Xpand {
+display: none;
+  }
+} 
+.Xpand {
+  position: absolute;
+       z-index: 1001;
+       top: 0px;
+       margin-top: 3vh;
+     margin-left: 42vw;
+}
+.overlay .mapContainer {
+  position: fixed;
+  left: 10%;
+  top: 0%;
+  width: 80%;
+  height: 100%;
+  z-index: 2000;
+}
+.overlay .posbutton,
+.overlay .zoomWrapper,
+.overlay .Xpand {
+  display: none;
+}
+.XpandClose {
+    position: fixed;
+       z-index: 2005;
+       top: 0px;
+       margin-top: 3vh;
+     margin-left: 31vw;
+}
 .zoomInBtn {
   position: absolute;
   background: #F26522;

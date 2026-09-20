@@ -1,10 +1,11 @@
 import "leaflet/dist/leaflet.css";
-import { divIcon } from "leaflet";
 import { MapIcon } from "./MapIcon";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import { useState, useEffect } from "react";
 import StationPopup from "./StationPopup";
 import pos from "../Assets/pos.png";
+import X from "../Assets/X.png";
+import Xpand1 from "../Assets/Xpand.png";
 import "./MapView.css";
 
 function LocateButton() {
@@ -20,6 +21,31 @@ function LocateButton() {
     <img className="posbutton" src={pos} alt="locate me" onClick={handleClick} />
   );
 }
+
+function Expand() {
+  const [ Xpand, setXpand ] = useState(false);
+
+  function XpandBtn() {
+    setXpand(true)
+  }
+  function XpandClose() {
+    setXpand(false)
+  }
+
+  return (
+    <>
+    <img className="Xpand" src={Xpand1} alt="Expand Map" onClick={XpandBtn} />
+
+    {Xpand && (
+      <div className="overlay">
+      <MapView/>
+      <img className="XpandClose" src={X} alt="X Buttton" onClick={XpandClose} />
+      </div>
+    )}
+    </>
+  );
+}
+
 function MapZoom() {
   const map = useMap();
 
@@ -99,6 +125,7 @@ function MapView() {
           <MapZoom/>
           <LocateButton/>
         </MapContainer>
+        <Expand/>
         {clickedStations && (
           <StationPopup
             station={clickedStations}
