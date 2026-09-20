@@ -6,7 +6,24 @@ import StationPopup from "./StationPopup";
 import pos from "../Assets/pos.png";
 import X from "../Assets/X.png";
 import Xpand1 from "../Assets/Xpand.png";
+import listShow from "../Assets/veiwlist.png";
+import zBlue from "../Assets/zBlue.png";
+import goto from "../Assets/goto.png";
+import mapsym from "../Assets/mapicon.png";
 import "./MapView.css";
+
+// Haversine formula to culculate the km
+function getKm([lat1, lon1], [lat2, lon2]) {
+  const R = 6371;
+  const toRad = (deg) => (deg * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
 
 function LocateButton() {
   const map = useMap();
@@ -18,30 +35,111 @@ function LocateButton() {
   }
 
   return (
-    <img className="posbutton" src={pos} alt="locate me" onClick={handleClick} />
+    <img
+      className="posbutton"
+      src={pos}
+      alt="locate me"
+      onClick={handleClick}
+    />
+  );
+}
+// lil diffrent was haveing issues wanted it the same but since its outside the mapcontainer.
+function ListsShow({ stations, userLocation }) {
+  const [sList, setSList] = useState(false);
+  const position = [-36.8485, 174.7633];
+  const zoom = 10;
+  const scrollWheelZoom = true;
+  return (
+    <>
+      <img
+        className="lShow"
+        src={listShow}
+        onClick={() => setSList(!sList)}
+      ></img>
+      {sList && (
+        <div className="showList">
+          <div className="noTimeMiniMap">
+            <MapContainer
+              center={userLocation || position}
+              zoom={zoom}
+              scrollWheelZoom={scrollWheelZoom}
+              zoomControl={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {stations.map((station) => (
+                <Marker
+                  key={station._id}
+                  position={[station.latitude, station.longitude]}
+                  icon={MapIcon(station.prices.Z91_Unleaded)}
+                />
+              ))}
+              <LocateButton />
+            </MapContainer>
+                        <img
+              className="lNoShow"
+              src={mapsym}
+              onClick={() => setSList(!sList)}
+            />
+          </div>
+          <div className="slist50">
+            {stations.map((s) => (
+              <div key={s._id} className="slistin">
+                <div className="flex">
+                  <img src={zBlue} alt="zBlue" />
+                  <h5>{s.name}</h5>
+                </div>
+                {/* hard codded for now */}
+                <div className="flex">
+                  <h5>{s.fuelTypes[0]}</h5>
+                  <h5>{s.prices.Z91_Unleaded}</h5>
+                </div>
+                <h5>
+                  {getKm(userLocation, [s.latitude, s.longitude]).toFixed(1)}km
+                </h5>
+                <a
+                  href={`https://www.google.com/maps?q=${s.latitude},${s.longitude}`}
+                >
+                  <img src={goto} alt="google direction" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
+// desktop under
+
 function Expand() {
-  const [ Xpand, setXpand ] = useState(false);
+  const [Xpand, setXpand] = useState(false);
 
   function XpandBtn() {
-    setXpand(true)
+    setXpand(true);
   }
   function XpandClose() {
-    setXpand(false)
+    setXpand(false);
   }
 
   return (
     <>
-    <img className="Xpand" src={Xpand1} alt="Expand Map" onClick={XpandBtn} />
+      <img className="Xpand" src={Xpand1} alt="Expand Map" onClick={XpandBtn} />
 
-    {Xpand && (
-      <div className="overlay">
-      <MapView/>
-      <img className="XpandClose" src={X} alt="X Buttton" onClick={XpandClose} />
-      </div>
-    )}
+      {Xpand && (
+        <div className="overlay">
+          <MapView />
+          <img
+            className="XpandClose"
+            src={X}
+            alt="X Buttton"
+            onClick={XpandClose}
+          />
+        </div>
+      )}
     </>
   );
 }
@@ -50,20 +148,23 @@ function MapZoom() {
   const map = useMap();
 
   function handleZoomIn() {
- map.zoomIn()
+    map.zoomIn();
   }
   function handleZoomOut() {
-    map.zoomOut()
+    map.zoomOut();
   }
 
   return (
-  <div className="zoomWrapper">
-    <div className="zoomInBtn" onClick={handleZoomIn}><h2>+</h2></div>
-    <div className="zoomOutBtn" onClick={handleZoomOut}><h2>-</h2></div>
-  </div>
+    <div className="zoomWrapper">
+      <div className="zoomInBtn" onClick={handleZoomIn}>
+        <h2>+</h2>
+      </div>
+      <div className="zoomOutBtn" onClick={handleZoomOut}>
+        <h2>-</h2>
+      </div>
+    </div>
   );
 }
-
 
 function MapView() {
   const position = [-36.8485, 174.7633];
@@ -95,47 +196,70 @@ function MapView() {
     );
   }, []);
 
-    return (
-      <>
-        <div className="mapContainer">
-        <MapContainer
-          center={userLocation || position}
-          zoom={zoom}
-          zoomControl={false}
-          scrollWheelZoom={scrollWheelZoom}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+  return (
+    <>
+      <div className="half">
+        <div className="mapList">
           {stations.map((station) => (
-            <Marker
-              key={station._id}
-              position={[station.latitude, station.longitude]}
-              // this is hardcodded for now it is takeing from only the ZX_Premium Price and not the other 2 why did i choose that one... IDK just happend.
-              icon={MapIcon(station.prices.Z91_Unleaded)}
-              eventHandlers={{
-                click: () => {
-                  console.log(clickedStations);
-                  setClickedStations(station);
-                },
-              }}
-            ></Marker>
+            <div key={station._id}>
+              <h1 className="sname">{station.name}</h1>
+              <h1 className="saddy">{station.address}</h1>
+              {station.open24Hours && <h1 className="s24h">Open 24 hours</h1>}
+              <ul>
+                {station.services.map((service) => (
+                  <p className="sserv" key={service}>
+                    <br></br>·{service}
+                  </p>
+                ))}
+              </ul>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+            </div>
           ))}
-          <MapZoom/>
-          <LocateButton/>
-        </MapContainer>
-        <Expand/>
-        {clickedStations && (
-          <StationPopup
-            station={clickedStations}
-            onClose={() => setClickedStations("")}
-          />
-        )}
         </div>
-      </>
-    );
-  
+
+        <div className="mapContainer">
+          <MapContainer
+            center={userLocation || position}
+            zoom={zoom}
+            zoomControl={false}
+            scrollWheelZoom={scrollWheelZoom}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            {stations.map((station) => (
+              <Marker
+                key={station._id}
+                position={[station.latitude, station.longitude]}
+                // this is hardcodded for now it is takeing from only the ZX_Premium Price and not the other 2 why did i choose that one... IDK just happend.
+                icon={MapIcon(station.prices.Z91_Unleaded)}
+                eventHandlers={{
+                  click: () => {
+                    console.log(clickedStations);
+                    setClickedStations(station);
+                  },
+                }}
+              ></Marker>
+            ))}
+            <MapZoom />
+            <LocateButton />
+          </MapContainer>
+          <ListsShow stations={stations} userLocation={userLocation} />
+          <Expand />
+          {clickedStations && (
+            <StationPopup
+              station={clickedStations}
+              onClose={() => setClickedStations("")}
+            />
+          )}
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default MapView;

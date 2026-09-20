@@ -46,7 +46,7 @@ return (
         </div>
       )}
     </main>
-
+    <MapView/>
     <Footer />
   </>
 );
