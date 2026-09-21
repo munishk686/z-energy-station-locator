@@ -1,9 +1,9 @@
 .popup {
-  position: absolute;
   background: white;
   bottom: 0;
   width: 100%;
-  z-index: 1500;
+  position: fixed;
+  z-index: 1999;
   height: 85vh;
   border-top-right-radius: 10%;
   border-top-left-radius: 10%;
@@ -65,7 +65,7 @@
   width: 130px;
   height: 30px;
 }
-.services {
+.services1 {
   font-family: 'Inter';
   font-weight: 600;
   color: #1E196A;
