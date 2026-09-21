@@ -76,6 +76,7 @@ The frontend includes:
 - Filters
 - Map view
 - Station details
+- location filters and page are in (findstation and locationpagecomp)
 
 ### Backend
 
