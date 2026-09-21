@@ -10,8 +10,8 @@ import listShow from "../../assets/veiwlist.png";
 import zBlue from "../../assets/zBlue.png";
 import goto from "../../assets/goto.png";
 import mapsym from "../../assets/mapicon.png";
-import searchie from "../../assets/search.png"
-import phSearch from "../../assets/placeholderSearch.png"
+import searchie from "../../assets/search.png";
+import phSearch from "../../assets/placeholderSearch.png";
 import "./MapView.css";
 
 // Haversine formula to culculate the km
@@ -78,10 +78,10 @@ function ListsShow({ stations, userLocation }) {
                   icon={MapIcon(station.prices.Z91_Unleaded)}
                 />
               ))}
-              <Search/>
+              <Search />
               <LocateButton />
             </MapContainer>
-                        <img
+            <img
               className="lNoShow"
               src={mapsym}
               onClick={() => setSList(!sList)}
@@ -103,12 +103,12 @@ function ListsShow({ stations, userLocation }) {
                   {getKm(userLocation, [s.latitude, s.longitude]).toFixed(1)}km
                 </h5>
                 <div className="flex3">
-                <a
-                  href={`https://www.google.com/maps?q=${s.latitude},${s.longitude}`}
-                >
-                  <img src={goto} alt="google direction" />
-                </a>
-              </div>
+                  <a
+                    href={`https://www.google.com/maps?q=${s.latitude},${s.longitude}`}
+                  >
+                    <img src={goto} alt="google direction" />
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -119,34 +119,43 @@ function ListsShow({ stations, userLocation }) {
 }
 
 function Search() {
-  const [search1 , setSearch1] = useState(false)
+  const [search1, setSearch1] = useState(false);
 
   function searchieBtn() {
-    setSearch1(true)
+    setSearch1(true);
   }
   function searchieCloseBtn() {
-    setSearch1(false)
-    setSList(false)
+    setSearch1(false);
+    setSList(false);
   }
 
-return (
-  <>
-  <img className="searchie" src={searchie} alt="search icon" onClick={() => {
-    searchieBtn();
-    setSList(false);
-}}/>
+  return (
+    <>
+      <img
+        className="searchie"
+        src={searchie}
+        alt="search icon"
+        onClick={() => {
+          searchieBtn();
+          setSList(false);
+        }}
+      />
 
-  {search1 && (
-    <div className="searchiePop">
-      <div>
-        <img src={phSearch} alt="place holder image" onClick={searchieCloseBtn}/>
-      </div>
-      <div className="sBackground">
-      </div>
-    </div>
-  )}
-  </>
-)}
+      {search1 && (
+        <div className="searchiePop">
+          <div>
+            <img
+              src={phSearch}
+              alt="place holder image"
+              onClick={searchieCloseBtn}
+            />
+          </div>
+          <div className="sBackground"></div>
+        </div>
+      )}
+    </>
+  );
+}
 
 // desktop under
 
@@ -233,67 +242,47 @@ function MapView() {
 
   return (
     <>
-      <div className="half">
-        <div className="mapList">
-          {stations.map((station) => (
-            <div key={station._id}>
-              <h1 className="sname">{station.name}</h1>
-              <h1 className="saddy">{station.address}</h1>
-              {station.open24Hours && <h1 className="s24h">Open 24 hours</h1>}
-              <ul>
-                {station.services.map((service) => (
-                  <p className="sserv" key={service}>
-                    <br></br>·{service}
-                  </p>
-                ))}
-              </ul>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-            </div>
-          ))}
-        </div>
-          {userLocation && 
-        <div className="mapContainer">
-          <MapContainer
-            center={userLocation || position}
-            zoom={zoom}
-            zoomControl={false}
-            scrollWheelZoom={scrollWheelZoom}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {stations.map((station) => (
-              <Marker
-                key={station._id}
-                position={[station.latitude, station.longitude]}
-                // this is hardcodded for now it is takeing from only the ZX_Premium Price and not the other 2 why did i choose that one... IDK just happend.
-                icon={MapIcon(station.prices.Z91_Unleaded)}
-                eventHandlers={{
-                  click: () => {
-                    console.log(clickedStations);
-                    setClickedStations(station);
-                  },
-                }}
-              ></Marker>
-            ))}
-            <MapZoom />
-            <LocateButton />
-          </MapContainer>
-          <Search/>
-          <ListsShow stations={stations} userLocation={userLocation} />
-          <Expand />
-          {clickedStations && (
-            <StationPopup
-              station={clickedStations}
-              onClose={() => setClickedStations("")}
-            />
-          )}
-        </div>
-}
+      <div>
+        {userLocation && (
+          <div className="mapContainer">
+            <MapContainer
+              center={userLocation || position}
+              zoom={zoom}
+              zoomControl={false}
+              scrollWheelZoom={scrollWheelZoom}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {stations.map((station) => (
+                <Marker
+                  key={station._id}
+                  position={[station.latitude, station.longitude]}
+                  // this is hardcodded for now it is takeing from only the ZX_Premium Price and not the other 2 why did i choose that one... IDK just happend.
+                  icon={MapIcon(station.prices.Z91_Unleaded)}
+                  eventHandlers={{
+                    click: () => {
+                      console.log(clickedStations);
+                      setClickedStations(station);
+                    },
+                  }}
+                ></Marker>
+              ))}
+              <MapZoom />
+              <LocateButton />
+            </MapContainer>
+            <Search />
+            <ListsShow stations={stations} userLocation={userLocation} />
+            <Expand />
+            {clickedStations && (
+              <StationPopup
+                station={clickedStations}
+                onClose={() => setClickedStations("")}
+              />
+            )}
+          </div>
+        )}
       </div>
     </>
   );

@@ -87,12 +87,6 @@
   width: 100vw;
 }
 @media (min-width: 768px) {
-  .half {
-    display: flex;
-    flex-direction: row;
-    height: 85vh;
-    width: 100%;
-  }
   .mapList {
     padding: 60px;
     height: 100%;
@@ -100,31 +94,6 @@
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
-  }
-  .sname {
-    font-family: "Inter";
-    font-weight: 700;
-    padding-bottom: 20px;
-    color: #1e196a;
-  }
-  .saddy {
-    font-family: "Inter";
-    font-weight: 700;
-    font-size: 25px;
-    padding-bottom: 20px;
-    color: black;
-  }
-  .s24h {
-    font-family: "Inter";
-    font-weight: 700;
-    font-size: 25px;
-    color: black;
-  }
-  .sserv {
-    font-family: "Inter";
-    font-weight: 400;
-    font-size: 25px;
-    color: black;
   }
   .mapContainer {
     position: relative;
@@ -139,11 +108,8 @@
 }
 @media (max-width: 768px) {
   .zoomWrapper,
-  .Xpand,
-  .sname,
-  .saddy,
-  .s24h,
-  .sserv {
+  .Xpand
+   {
     display: none;
   }
 }
