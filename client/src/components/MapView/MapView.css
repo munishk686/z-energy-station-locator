@@ -163,7 +163,7 @@ left: 25px;
   .mapContainer {
     position: relative;
     height: 100%;
-    width: 100;
+    width: 100%;
   }
   .lShow,
   .lNoShow,

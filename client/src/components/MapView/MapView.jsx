@@ -269,10 +269,7 @@ function MapView() {
     );
   }, []);
 
-  return (
-    <>
-      <div>
-        
+  return (    
           <div className="mapContainer">
             <MapContainer
               center={userLocation || position}
@@ -311,9 +308,6 @@ function MapView() {
               />
             )}
           </div>
-        
-      </div>
-    </>
   );
 }
 
