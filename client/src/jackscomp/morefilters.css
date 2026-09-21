@@ -36,6 +36,11 @@
   cursor: pointer;
 }
 
+.filter-chips button.selected {
+  background: #3028ac;
+  color: white;
+}
+
 .filter-heading-row {
   display: flex;
   justify-content: space-between;
@@ -77,17 +82,74 @@
 
 .other-services {
   border-bottom: none;
-}
-
-.payment-select {
-  width: 100%;
+  background: #e5e5e5;
   padding: 14px;
-  border: none;
-  background: #fafafa;
-  color: #1f196e;
-  font-size: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
 }
 
+.service-dropdown {
+  background: white;
+  min-width: 0;
+}
+
+.service-dropdown-header {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 12px;
+  gap: 8px;
+}
+
+.service-dropdown-toggle {
+  flex: 1;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #17154d;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.service-clear {
+  background: transparent;
+  border: none;
+  color: #e65b19;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.service-chevron {
+  background: transparent;
+  border: none;
+  color: #e65b19;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.service-dropdown-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid #eeeeee;
+}
+
+.service-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #17154d;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.service-option input {
+  accent-color: #e65b19;
+  cursor: pointer;
+}
 
 .filter-actions {
   display: flex;
@@ -117,11 +179,6 @@
   border: none;
 }
 
-.filter-chips button.selected {
-  background: #3028ac;
-  color: white;
-}
-
 @media (max-width: 768px) {
   .more-filters-panel {
     width: 100%;
@@ -143,5 +200,10 @@
 
   .filter-actions {
     gap: 10px;
+  }
+
+  .other-services {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 }

@@ -92,11 +92,7 @@ function SearchBanner({onResults, onApplyFilters, userLocation, showMobileSearch
       {filter}
     </button>
   ))}
-  <button
-    type="button"
-    className="more-filters"
-    onClick={() => setShowFilters(!showFilters)}>
-  </button>
+
   <button
    type="button"
    className="desktop-more-filters"
