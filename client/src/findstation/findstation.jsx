@@ -1,9 +1,9 @@
-import SearchBanner from "../jackscomp/searchbanner.jsx";
-import StationCard from "../jackscomp/stationcard.jsx";
+import SearchBanner from "../locationpagecomp/searchbanner.jsx";
+import StationCard from "../locationpagecomp/stationcard.jsx";
 import { useState } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import LocationPopup from "../jackscomp/locationpopup.jsx";
+import LocationPopup from "../locationpagecomp/locationpopup.jsx";
 import "./findstation.css";
 import MapView from "../components/MapView/MapView.jsx";
 
