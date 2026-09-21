@@ -121,3 +121,27 @@
   background: #3028ac;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .more-filters-panel {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    padding: 20px 16px;
+    border-radius: 0 0 24px 24px;
+  }
+
+  .refine-options {
+    flex-wrap: wrap;
+  }
+
+  .refine-options select {
+    max-width: 100%;
+  }
+
+  .filter-actions {
+    gap: 10px;
+  }
+}

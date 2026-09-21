@@ -37,14 +37,26 @@
     display: flex;
     flex-direction: column;
     height: auto;
-  }
-
-  .station-results {
-    height: 400px;
-    overflow-y: auto;
+    width: 100%;
   }
 
   .station-map {
-    height: 400px;
+    order: 1;
+    width: 100%;
+    height: 320px;
+    flex-shrink: 0;
+  }
+
+  .station-results {
+    order: 2;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .results-count {
+    padding: 12px;
+    font-size: 12px;
   }
 }

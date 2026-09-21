@@ -4,7 +4,7 @@ import burgericon from "../../assets/burgericon.png";
 import line1 from "../../assets/line1.png";
 import "./Header.css";
 
-function Header() {
+function Header( {onSearchClick} ) {
   return (
     <header className="header">
       <div className="header-top">
@@ -22,7 +22,11 @@ function Header() {
           <a href="#">Download App</a>
           <a href="#">About Z</a>
 
-          <button type="button" className="search-button" aria-label="Search">
+          <button
+            type="button"
+            className="search-button"
+            aria-label="Search"
+            onClick={onSearchClick}>
             <img src={searchIcon} alt="Search" />
           </button>
 

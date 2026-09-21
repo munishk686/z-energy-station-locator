@@ -53,9 +53,19 @@ function StationCard({ station, selectedFilters = [] }) {
             )}
 
             {station.services?.map((service, index) => {
-              const filterName =
-                service === "Restroom" ? "Restrooms" : service;
-              const isSelected = selectedFilters.includes(filterName);
+             const isSelected = selectedFilters.some(
+             (filter) => filter.toLowerCase() === service.toLowerCase()) ||
+             (selectedFilters.includes("Coffee") &&
+             (service === "Coffee & Food" ||
+             service === "Z Express Coffee & Fresh Food" ||
+             service === "Pre-order Coffee")) ||
+             (selectedFilters.includes("Food") &&
+             (service === "Coffee & Food" ||
+             service === "Z Express Coffee & Fresh Food")) ||
+             (selectedFilters.includes("Restrooms") &&
+             service === "Restroom") ||
+             (selectedFilters.includes("EV Station") &&
+             service === "EV Charging");
 
               return (
                 <span
