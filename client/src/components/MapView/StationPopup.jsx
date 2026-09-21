@@ -27,7 +27,7 @@ function StationPopup({ station, onClose }) {
        <img className='googleDirection' src={directionIcon} alt="direction" />
 </a>
 <br></br><br></br>
-      <h5 className='services'>Services</h5>
+      <h5 className='services1'>Services</h5>
       <br></br>
       <p className='stationServices'>{station.services.join(' · ')}</p>
       <br></br>

@@ -1,8 +1,8 @@
 .posbutton {
   position: absolute;
-  z-index: 1001;
-  bottom: 30px;
-  right: 20px;
+  top: 270px;
+  left: 300px;
+  z-index: 998;
 }
 .searchie {
   position: absolute;
@@ -34,11 +34,11 @@ left: 25px;
   height: 48%;
 }
 .searchiePop {
-  position: absolute;
-  top: 0px;
+   position: fixed;
+  inset: 0;
+  z-index: 1999;
   width: 100%;
   height: 100%;
-  z-index: 1400;
   background-color: rgba(255, 255, 255);
 }
 .lShow {
