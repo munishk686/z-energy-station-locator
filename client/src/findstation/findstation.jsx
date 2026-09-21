@@ -1,11 +1,11 @@
 import SearchBanner from "../jackscomp/searchbanner.jsx";
 import StationCard from "../jackscomp/stationcard.jsx";
 import { useState } from "react";
-import MapView from "../../Components/MapView";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import LocationPopup from "../jackscomp/locationpopup.jsx";
 import "./findstation.css";
+import MapView from "../components/MapView/MapView.jsx";
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
   const toRadians = (degrees) => degrees * (Math.PI / 180);
@@ -194,12 +194,11 @@ return (
           </div>
 
           <div className="station-map" id="map">
-            <MapView />
+            <MapView/>
           </div>
         </div>
       )}
     </main>
-
     <Footer />
   </>
 );

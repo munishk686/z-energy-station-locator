@@ -14,8 +14,7 @@
 }
 @media (min-width: 768px) {
   .popup {
-    width: 0px;
-    height: 0px;
+    display: none;
   }
   }
 .popup.closed {

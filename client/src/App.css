@@ -2,13 +2,3 @@
 #root {
   width: 100%;
 }
-
-.map {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 85vh;
-}
-.map50 {
-    width: 50%;
-}
