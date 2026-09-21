@@ -167,7 +167,8 @@ left: 25px;
   }
   .lShow,
   .lNoShow,
-  .posbutton {
+  .posbutton,
+  .searchie {
     display: none;
   }
 }
