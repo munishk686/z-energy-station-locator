@@ -8,8 +8,36 @@ function MoreFilters( {onApplyFilters} ) {
   const [ fuelType, setFuelType ] = useState("Z91 Unleaded");
   const [ stationType, setStationType ] = useState("Service Station");
   const [ distance, setDistance ] = useState("10");
-  const [ payment, setPayment ] = useState("");
   const [ saveFilter, setSaveFilter ] = useState(false);
+  const [openSections, setOpenSections] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
+  
+  const serviceGroups = {
+  "Other Services": [
+    "Restrooms",
+    "Z2O carwash",
+    "Trailer hire",
+    "LPG SWAP'n'GO",
+    "Super long hoses",
+    "Fast fill Diesel lane",
+    "AdBlue Diesel Exhaust Fluid",
+  ],
+
+  "Coffee & Food": [
+    "Z Espress Coffee & Fresh Food",
+    "Pre-order Coffee",
+    "f'real",
+    "Compostable Cups",
+  ],
+
+  Payment: [
+    "Pay in app",
+    "Pay by plate",
+    "24/7 Pay at Pump",
+    "Club+",
+    "ATM",
+  ],
+};
 
   const chips = [
     "Lowest Price",
@@ -33,12 +61,27 @@ function MoreFilters( {onApplyFilters} ) {
     }
   };
 
+  const toggleSection = (section) => {
+  setOpenSections((previous) =>
+    previous.includes(section)
+      ? previous.filter((item) => item !== section)
+      : [...previous, section]
+  );
+};
+
+const toggleService = (service) => {
+  setSelectedServices((previous) =>
+    previous.includes(service)
+      ? previous.filter((item) => item !== service)
+      : [...previous, service]
+  );
+};
+
   const handleClearAll = () => {
     setSelectedChips([]);
     setFuelType("");
     setStationType("");
     setDistance("none");
-    setPayment("");
     setSaveFilter(false);
   };
 
@@ -126,17 +169,60 @@ function MoreFilters( {onApplyFilters} ) {
       </div>
 
       <div className="filter-section other-services">
-        <h3>Other Services</h3>
+  <h3>Other Services</h3>
 
-        <select
-          className="payment-select"
-          value={payment}
-          onChange={(event) => setPayment(event.target.value)}>
-          <option value="">Payment</option>
-          <option value="Pay at Pump">Pay at Pump</option>
-          <option value="Credit Card">Credit Card</option>
-        </select>
+  {Object.entries(serviceGroups).map(([group, services]) => (
+    <div className="service-dropdown" key={group}>
+      <div className="service-dropdown-header">
+        <button
+          type="button"
+          className="service-dropdown-toggle"
+          onClick={() => toggleSection(group)}
+        >
+          {group}
+        </button>
+
+        {openSections.includes(group) && (
+          <button
+            type="button"
+            className="service-clear"
+            onClick={() =>
+              setSelectedServices((previous) =>
+                previous.filter((service) => !services.includes(service))
+              )
+            }
+          >
+            Clear all
+          </button>
+        )}
+
+        <button
+          type="button"
+          className="service-chevron"
+          onClick={() => toggleSection(group)}
+          aria-label={`Toggle ${group}`}
+        >
+          {openSections.includes(group) ? "⌃" : "⌄"}
+        </button>
       </div>
+
+      {openSections.includes(group) && (
+        <div className="service-dropdown-options">
+          {services.map((service) => (
+            <label key={service} className="service-option">
+              <input
+                type="checkbox"
+                checked={selectedServices.includes(service)}
+                onChange={() => toggleService(service)}
+              />
+              {service}
+            </label>
+          ))}
+        </div>
+        )}
+      </div>
+      ))}
+     </div>
 
       <div className="filter-actions">
         <button
@@ -149,7 +235,11 @@ function MoreFilters( {onApplyFilters} ) {
         <button
           type="button"
           className="apply-button"
-          onClick={() => onApplyFilters(selectedChips)}>
+          onClick={() =>
+          onApplyFilters({
+          filters: [...selectedChips, ...selectedServices],
+          distance: distance,
+          })}>
           Apply
         </button>
       </div>

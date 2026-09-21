@@ -1,0 +1,111 @@
+.popup {
+  position: absolute;
+  background: white;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 85vh;
+  border-top-right-radius: 10%;
+  border-top-left-radius: 10%;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.25);
+   transition-property: all;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+@media (min-width: 768px) {
+  .popup {
+    display: none;
+  }
+  }
+.popup.closed {
+  max-height: 0;
+  background-color: orange;
+}
+.marginLeft {
+    margin-left: 10%;
+}
+.closeMiddle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -10%;
+    width: 100%;
+}
+.close {
+  height: 5px;
+  width: 30%;
+  background: #E1E1E1;
+  border-radius: 10px;
+}
+.stationName {
+  font-family: 'Inter';
+  font-weight: 700;
+  color: #1E196A;
+}
+.stationAddress {
+   font-family: 'Inter';
+  font-weight: 400;
+   font-size: 10px;
+  color: #1E196A;
+}
+.howFar {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 10px;
+  color: #F26522;
+}
+
+.openClosed {
+  font-family: 'Inter';
+  font-weight: 400;
+   font-size: 10px;
+  color: #F26522;
+}
+.googleDirection {
+  width: 130px;
+  height: 30px;
+}
+.services {
+  font-family: 'Inter';
+  font-weight: 600;
+  color: #1E196A;
+}
+.stationServices {
+   font-family: 'Inter';
+  font-weight: 400;
+   font-size: 10px;
+   color: #1E196A;
+}
+.evCharging {
+      font-family: 'Inter';
+  font-weight: 600;
+  color: #1E196A;
+}
+.evCardOut {
+    height: 18vh;
+    width: 80vw;
+    background-color: #F4F6FF;
+}
+.evCardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+.evIcon {
+    height: 5vh;
+}
+.half {
+    display: flex;
+    align-items: center;
+}
+.evType {
+    margin-left: 20px;
+}
+.kwmax {
+justify-content: flex-end;
+}
+.space {
+    padding: 1%;
+    padding-left: 15px;
+}

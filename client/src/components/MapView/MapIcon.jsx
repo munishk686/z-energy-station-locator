@@ -64,7 +64,7 @@ position: absolute;
 </div>
  </div>`,
     iconSize: [55, 48],
-    iconAnchor: [20, 45]
+    iconAnchor: [29, 43]
   });
 
   return mapIcon;
