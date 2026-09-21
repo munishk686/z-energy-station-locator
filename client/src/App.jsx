@@ -14,7 +14,7 @@ function App() {
     <Route path="/locations" element={
       <>
       <FindStation />
-
+      
       </>
     } />
     </Routes>
