@@ -1,0 +1,60 @@
+.station-layout {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  width: 100%;
+  height: 600px;
+}
+
+.station-results {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  background: white;
+}
+
+.results-count {
+  margin: 0;
+  padding: 18px 24px;
+  color: #f26522;
+  font-size: 14px;
+  text-align: center;
+}
+
+.station-map {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.station-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .station-layout {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .station-map {
+    order: 1;
+    height: 350px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .station-results {
+    order: 2;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .results-count {
+    padding: 12px;
+    font-size: 12px;
+  }
+}

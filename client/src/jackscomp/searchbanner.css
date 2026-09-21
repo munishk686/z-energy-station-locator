@@ -1,44 +1,57 @@
 .search-banner {
   background: linear-gradient(to right, #ff5800, #ffc800);
-  padding: 30px 40px;
+  padding: 30px 40px 30px 100px;
   position: relative;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .search-banner h1 {
   color: white;
   font-size: 32px;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
 }
 
 .search-row {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
+  width: 100%;
 }
 
 .search-row input {
-  width: 700px;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
   padding: 12px 18px;
   border: none;
   border-radius: 25px;
   outline: none;
 }
 
-.search-button {
+.station-search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 42px;
   height: 42px;
+  flex-shrink: 0;
   border: none;
   border-radius: 50%;
   background: #3028ac;
   color: white;
+  font-size: 24px;
   cursor: pointer;
 }
 
 .filter-buttons {
   display: flex;
-  align-items: center;
+  flex: 1;
+  min-width: 0;
   gap: 8px;
-  margin-top: 15px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .filter-buttons button {
@@ -50,7 +63,105 @@
   cursor: pointer;
 }
 
-.filter-buttons .more-filters {
+.filter-buttons button.selected {
   background: #3028ac;
   color: white;
+}
+
+.mobile-filter-bar {
+  display: none;
+}
+
+.search-banner .desktop-more-filters,
+.search-banner .mobile-more-filters {
+  background: #3020a8;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 18px;
+  cursor: pointer;
+}
+
+.search-banner .desktop-more-filters:hover,
+.search-banner .mobile-more-filters:hover {
+  background: #3020a8;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .search-banner {
+    padding: 0;
+    background: transparent;
+  }
+
+  .search-banner h1,
+  .search-row,
+  .desktop-more-filters {
+    display: none;
+  }
+
+  .mobile-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f26522;
+    padding: 8px 12px;
+  }
+
+  .mobile-back-button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 50%;
+    background: transparent;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .search-banner .mobile-more-filters {
+    padding: 8px 14px;
+  }
+
+  .search-row.mobile-search-open {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #e96520;
+    box-sizing: border-box;
+  }
+
+  .search-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .station-search-button {
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+  }
+
+  .filter-buttons {
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin: 0;
+    padding: 8px 6px;
+    background: white;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-buttons::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-buttons button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 11px;
+    padding: 8px 12px;
+    box-shadow: 0 1px 3px #00000025;
+  }
 }
