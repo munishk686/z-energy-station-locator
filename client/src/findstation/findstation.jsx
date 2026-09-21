@@ -47,9 +47,9 @@ function FindStation() {
       return station.open24Hours === true;
 
     case "Car Wash":
-    case "Z2O carwash":
+    case "Z20 carwash":
       return services.includes("car wash") ||
-         services.includes("z2o carwash");
+         services.includes("z20 carwash");
 
     case "Trailer Hire":
       return (

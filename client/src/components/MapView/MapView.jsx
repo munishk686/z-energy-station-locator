@@ -243,7 +243,7 @@ function MapView() {
   return (
     <>
       <div>
-        {userLocation && (
+        
           <div className="mapContainer">
             <MapContainer
               center={userLocation || position}
@@ -282,7 +282,7 @@ function MapView() {
               />
             )}
           </div>
-        )}
+        
       </div>
     </>
   );
