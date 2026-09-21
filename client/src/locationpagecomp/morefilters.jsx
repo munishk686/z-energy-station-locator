@@ -7,7 +7,7 @@ function MoreFilters( {onApplyFilters} ) {
   const [ selectedChips, setSelectedChips ] = useState([]);
   const [ fuelType, setFuelType ] = useState("Z91 Unleaded");
   const [ stationType, setStationType ] = useState("Service Station");
-  const [ distance, setDistance ] = useState("10");
+  const [ distance, setDistance ] = useState("none");
   const [ saveFilter, setSaveFilter ] = useState(false);
   const [openSections, setOpenSections] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
@@ -15,7 +15,7 @@ function MoreFilters( {onApplyFilters} ) {
   const serviceGroups = {
   "Other Services": [
     "Restrooms",
-    "Z2O carwash",
+    "Z20 carwash",
     "Trailer hire",
     "LPG SWAP'n'GO",
     "Super long hoses",
@@ -24,7 +24,7 @@ function MoreFilters( {onApplyFilters} ) {
   ],
 
   "Coffee & Food": [
-    "Z Espress Coffee & Fresh Food",
+    "Z Express Coffee & Fresh Food",
     "Pre-order Coffee",
     "f'real",
     "Compostable Cups",
@@ -79,6 +79,7 @@ const toggleService = (service) => {
 
   const handleClearAll = () => {
     setSelectedChips([]);
+    setSelectedServices([]);
     setFuelType("");
     setStationType("");
     setDistance("none");
