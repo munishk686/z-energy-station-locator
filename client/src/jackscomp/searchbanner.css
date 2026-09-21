@@ -256,3 +256,15 @@
     min-width: 0;
   }
 }
+
+.desktop-more-filters {
+  background-color: #3020a8;
+  color: white;
+  border: none;
+}
+
+.mobile-more-filters {
+  background-color: #3020a8;
+  color: white;
+  border: none;
+}

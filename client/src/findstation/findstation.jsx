@@ -47,7 +47,9 @@ function FindStation() {
       return station.open24Hours === true;
 
     case "Car Wash":
-      return services.includes("car wash");
+    case "Z2O carwash":
+      return services.includes("car wash") ||
+         services.includes("z2o carwash");
 
     case "Trailer Hire":
       return (
@@ -67,13 +69,22 @@ function FindStation() {
       );
 
     case "EV Station":
-      return services.includes("ev charging");
+      return (
+       station.station_type?.toLowerCase() === "ev charging" ||
+       station.fuelTypes?.some(
+      (fuel) => fuel.toLowerCase() === "ev charging") ||
+       services.includes("ev charging"));
 
     case "Restrooms":
-      return services.includes("restroom");
+      return services.includes("restroom") ||
+      services.includes("restrooms");
+    
+    case "Nearest":
+    case "Lowest Price":
+      return true;
 
     default:
-      return true;
+      return services.includes(filter.trim().toLowerCase());
   }
 };
 
