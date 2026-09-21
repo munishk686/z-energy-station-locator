@@ -11,8 +11,9 @@ import zBlue from "../../assets/zBlue.png";
 import goto from "../../assets/goto.png";
 import mapsym from "../../assets/mapicon.png";
 import searchie from "../../assets/search.png";
-import phSearch from "../../assets/placeholderSearch.png";
+import Back from "../../assets/back.png"
 import "./MapView.css";
+
 
 // Haversine formula to culculate the km
 function getKm([lat1, lon1], [lat2, lon2]) {
@@ -46,7 +47,7 @@ function LocateButton() {
   );
 }
 // lil diffrent was haveing issues wanted it the same but since its outside the mapcontainer.
-function ListsShow({ stations, userLocation }) {
+function ListsShow({  stations, userLocation, setClickedStations }) {
   const [sList, setSList] = useState(false);
   const position = [-36.8485, 174.7633];
   const zoom = 10;
@@ -78,7 +79,7 @@ function ListsShow({ stations, userLocation }) {
                   icon={MapIcon(station.prices.Z91_Unleaded)}
                 />
               ))}
-              <Search />
+              <Search stations={stations} userLocation={userLocation} onStationClick={setClickedStations} />
               <LocateButton />
             </MapContainer>
             <img
@@ -118,15 +119,18 @@ function ListsShow({ stations, userLocation }) {
   );
 }
 
-function Search() {
+function Search({ stations, userLocation, onStationClick }) {
   const [search1, setSearch1] = useState(false);
+  const [query, setQuery] = useState("");
+  const filtered = query
+    ? stations.filter((s) => s.name.toLowerCase().includes(query.toLowerCase()))
+    : [];
 
   function searchieBtn() {
     setSearch1(true);
   }
   function searchieCloseBtn() {
     setSearch1(false);
-    setSList(false);
   }
 
   return (
@@ -137,19 +141,44 @@ function Search() {
         alt="search icon"
         onClick={() => {
           searchieBtn();
-          setSList(false);
         }}
       />
 
       {search1 && (
         <div className="searchiePop">
-          <div>
-            <img
-              src={phSearch}
-              alt="place holder image"
-              onClick={searchieCloseBtn}
+          <div className="bannerr">
+            <img src={Back} className="backk" onClick={searchieCloseBtn}></img>
+            <input
+              className="findStation"
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
           </div>
+          {filtered.map((s) => (
+            <div key={s._id}>
+              <div className="flex1">
+                <img src={zBlue} alt="zBlue" />
+                <div className="flex2">
+                  <div className="font">{s.name}</div>
+                  <div className="flex4">
+                    <h5 className="font1">Open Now |</h5>
+                    <h5 className="font1">
+                      {getKm(userLocation, [s.latitude, s.longitude]).toFixed(
+                        1,
+                      )}{" "}
+                      km away
+                    </h5>
+                  </div>
+                </div>
+                <div></div>
+                <div className="flex5">
+                  <h5 onClick={() => { console.log("clicked", s); onStationClick(s); }} className="gap">{">"}</h5>
+                </div>
+              </div>
+            </div>
+          ))}
+
           <div className="sBackground"></div>
         </div>
       )}
@@ -272,7 +301,7 @@ function MapView() {
               <MapZoom />
               <LocateButton />
             </MapContainer>
-            <Search />
+            <Search stations={stations} userLocation={userLocation} onStationClick={setClickedStations}/>
             <ListsShow stations={stations} userLocation={userLocation} />
             <Expand />
             {clickedStations && (
