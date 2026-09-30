@@ -1,12 +1,71 @@
-# Level 5 ADV Mission 5 Phase 2
+# Z Energy Station Locator
 
-## Introduction
+A web application that helps users find Z Energy service stations, view station information, search and filter stations, and locate stations on an interactive map.
 
-This project is a Z Energy Station Locator application built as part of Mission 5 Phase 2.
+This project was developed as part of the Mission Ready programme using an Agile development approach.
 
-The application allows users to find Z Energy stations, search for stations, view station information, apply filters, and view stations on a map. Users can also select their preferred fuel and station type to refine their search.
+## Features
 
-The project includes a React frontend and an Express.js backend connected to a local MongoDB database.
+- Search for Z Energy service stations
+- View stations on an interactive map
+- View station details
+- Filter stations by fuel and station type
+- View fuel prices and available services
+- View station addresses and location information
+- Responsive user interface
+
+## Technologies
+
+### Frontend
+
+- React
+- Vite
+- JavaScript
+- CSS
+- React Router
+- Leaflet
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+
+### Development Tools
+
+- Git
+- GitHub
+- Jira
+- Pull Requests
+- Agile / Kanban
+
+## My Contribution
+
+I worked as part of a three-person development team.
+
+My main contribution was frontend development, including:
+
+- Developed sections of the Home page, including the Hero section and Fuel Supply Update section.
+- Built the "What you need, made easy" section.
+- Developed the desktop version of the "There where you need us" section.
+- Worked on the "Make the most of Z" section.
+- Contributed to shared frontend components and responsive layouts.
+- Worked with Leaflet and location-based functionality.
+- Helped implement distance calculations between the user's location and service stations.
+- Collaborated with team members using GitHub branches, pull requests, Jira and regular stand-up meetings.
+
+## Project Structure
+
+```text
+client/
+    React frontend
+
+server/
+    Express.js backend
+
+README.md
+    Project documentation
+```
 
 ## Installation
 
@@ -21,8 +80,8 @@ Make sure you have the following installed:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/Mission-Ready/l5-adv-2026-jul-l5-adv-mission-5-phase-2-munishk686
-cd Mission-Ready/l5-adv-2026-jul-l5-adv-mission-5-phase-2-munishk686
+git clone https://github.com/munishk686/z-energy-station-locator.git
+cd z-energy-station-locator
 ```
 
 ### Install frontend dependencies
@@ -55,42 +114,9 @@ npm start
 
 The frontend and backend should now be running locally.
 
-## More Details
+## Database
 
-### Frontend
-
-The frontend is built using:
-
-- React
-- Vite
-- JavaScript
-- CSS
-- React Router
-
-The frontend includes:
-
-- Home page
-- Fuel and station selection
-- Station search
-- Station list
-- Filters
-- Map view
-- Station details
-- location filters and page are in (findstation and locationpagecomp)
-
-### Backend
-
-The backend is built using:
-
-- Node.js
-- Express.js
-- MongoDB
-
-The backend provides API endpoints for retrieving Z Energy station information from the MongoDB database.
-
-### Database
-
-The application uses a local MongoDB database containing Z Energy station data, including:
+The application uses a local MongoDB database containing Z Energy station information, including:
 
 - Station name
 - Address
@@ -101,8 +127,14 @@ The application uses a local MongoDB database containing Z Energy station data, 
 - Services
 - Opening information
 
-## Contributors
+## Team
 
-- Munish Kumar 
+This project was developed by:
+
+- Munish Kumar
 - Jack Cheng
 - Isaiah Marchenko
+
+## Project Context
+
+This project was developed as part of the Mission Ready Advanced Full Stack Developer programme. The team used Agile practices including Jira Kanban, GitHub branches and pull requests, regular stand-ups, and collaborative development.
